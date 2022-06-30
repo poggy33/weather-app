@@ -11,10 +11,10 @@ function App() {
   const searchLocation = (event) => {
     axios.get(url).then((response) => {
       setData(response.data);
-      // console.log(response.data);
     });
     setLocation("");
   };
+  const currentDate = new Date().toString().slice(4, 15);
 
   return (
     <div className="app">
@@ -37,8 +37,9 @@ function App() {
           <div className="temp">
             {data.main ? <h1>{data.main.temp.toFixed()}°C</h1> : null}
           </div>
+          <div className="data">{data.main ? <p>{currentDate}</p> : null}</div>
           <div className="description">
-            {data.weather ? <p>{data.weather[0].main}</p> : null}
+            {data.weather ? <p>{data.weather[0].description}</p> : null}
           </div>
         </div>
 
